@@ -1,0 +1,306 @@
+from affichage import *
+from chargement import * 
+
+def films_commencant_par(tab, lettre):
+
+    """Affiche tout les films dont le nom commence par "lettre"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params lettre(char): Première lettre du film 
+    """
+    #Ajoute à "table_titre" chaque nom de film ayant pour première character "lettre"
+    table_titre = [tab[i][1] for i in range(0, len(tab)) if tab[i][1][0].lower() == lettre.lower()]
+
+    #Si le nombre de film est entre 0 et 10 on les affiche tous
+    if len(table_titre) > 0 and len(table_titre) < 10:
+        #Affichage du nombre de film ainsi que la 1ère lettre
+        print("Voici les", (len(table_titre)), "films commencent par \"" + lettre + "\"")
+        #Affichage des films
+        affiche_table(table_titre, 1, len(table_titre))
+
+    #Si le nombre de film on affiche seulement 10 films
+    elif len(table_titre) > 10:
+        #Affichage du nombre de film ainsi que la 1ère lettre
+        print("Voici les 10 premiers films commencent par \"" + lettre + "\"")
+        #Affichage des films
+        affiche_table(table_titre, 1, 10)
+
+    #Affichage du nombre total de film
+    print("Nombre total de film : ", len(table_titre))
+
+def langues(tab):
+
+    """Affiche tout les sigles de toutes les langues des films
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+    """
+    #Initialisation de la liste des langues
+    lang_sigle = []
+
+    #Boucle pour chaque film
+    for i in range(0, len(tab)):
+        #Récupère la langue du film
+        lang_film = tab[i][4]
+        #Si elle n'est pas déjà dans la liste des langues
+        if lang_film not in lang_sigle:
+            #Ajout de la langue du film dans la liste des langues
+            lang_sigle.append(lang_film)
+
+    #Trie par ordre alphabétique
+    lang_sigle.sort()
+
+    #Affichage de la liste des langues
+    print("Affichage des 10 premières langues")
+    affiche_table(lang_sigle, 1, 10)
+
+    #Affichage du nombre total de langue
+    print("Nombre total de langue", len(lang_sigle))
+
+def acteurs_prenoms(tab, prenom):
+
+    """Affiche tous les acteurs avec le prénom que l'on veut
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params prenom(string): Nom de l'acteur
+    """
+
+    #Initialisation de la liste des acteurs unique
+    acteur_list = []
+
+    #Boucle pour chaque ligne de "tab"
+    for i in range (0, len(tab)):
+        #Récupère le prénom de l'acteur
+        acteur_prenom = tab[i][1]
+        #Si il n'est pas dans "acteur_list" alors
+        if acteur_prenom not in acteur_list:
+            #Ajout du nom de l'acteur dans "acteur_list"
+            acteur_list.append(acteur_prenom)
+
+    #Ajoute à "acteur_prenom" chaque prenom d'acteur commencant par "prenom"
+    acteur_prenom = [acteur_list[i] for i in range(0, len(acteur_list)) if acteur_list[i].split()[0] == prenom]
+
+    #Si le nombre d'acteurs dans "acteur_prenom" est > 0 et < 10 alors on les affiche tous
+    if len(acteur_prenom) > 0 and len(acteur_prenom) < 10:
+        #Affichage du nombre d'acteurs et du prénom
+        print("Voici les", len(acteur_prenom), "acteurs commencent par", "\"" + prenom + "\"")
+        #Affichage des acteurs
+        affiche_table(acteur_prenom, 1, len(acteur_prenom))
+    #Si le nombre d'acteurs dans "acteur_prenom" est  > 10 alors on en affiche que 10
+    elif len(acteur_prenom) > 10:
+        #Affichage du nombre d'acteurs et du prénom
+        print("Voici les 10 premiers acteurs commencent par", "\"" + prenom + "\"")
+        #Affichage des 10 premiers acteurs
+        affiche_table(acteur_prenom, 1, 10)
+
+    #Affichage du nombre d'acteurs total
+    print("Acteurs total :", len(acteur_prenom))
+
+def films_sortis_avant(tab, annee):
+
+    """Affiche tous les films sortis avant "annee"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params annee(int): Année de sortie du film
+    """
+
+     #Ajoute à "list_film" chaque nom de film qui sont sortie avant "annee"
+    list_film = [tab[i][1] for i in range(0, len(tab)) if int(tab[i][2]) < annee]
+    
+    #Si le nombre de film dans "list_film" est > 0 et < 10 alors on les affiche tous
+    if len(list_film) > 0 and len(list_film) < 10:
+        #Affichage du nombre de film et l'année de sortie 
+        print("Voici les", len(list_film),"films sortie avant", annee)
+        #Affichage des films
+        affiche_table(list_film, 1, len(list_film))
+    #Si le nombre de film dans "list_film" est > 10 alors on affiche les 10 premiers 
+    elif len(list_film) > 10:
+        #Affichage du nombre de film et l'année de sortie
+        print("Voici les 10 premiers films sorties avant", annee)
+        #Affichage des films
+        affiche_table(list_film, 1, 10)
+
+    #Affichage du nombre total de film sortie avant "annee"
+    print("Nombre total de film sortie avant", annee, ":", len(list_film))    
+
+def films_genre(tab, genre):
+
+    """Affiche tous les Id des film ayant pour genre "genre"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params genre(string): Genre du film
+    """
+
+    #Ajoute à "list_film" chaque ID de film ayant pour genre "genre"
+    list_film = [tab[i][0] for i in range(0, len(tab)) if genre in tab[i][5].split(",")]
+    
+    #Si le nombre de film dans "list_film" est > 0 et < 10 alors on les affiche tous
+    if len(list_film) > 0 and len(list_film) < 10:
+        #Affichage du nombre de film et l'année de sortie 
+        print("Voici l'ID des", len(list_film),"films ayant pour genre", "\"" + genre + "\"")
+        #Affichage des films
+        affiche_table(list_film, 1, len(list_film))
+    #Si le nombre de film dans "list_film" est > 10 alors on affiche les 10 premiers 
+    elif len(list_film) > 10:
+        #Affichage du nombre de film et l'année de sortie
+        print("Voici l'ID des 10 premiers films ayant pour genre", "\"" + genre + "\"")
+        #Affichage des films
+        affiche_table(list_film, 1, 10)
+
+    #Affichage du nombre total de film sortie avant "annee"
+    print("Nombre total de film ayant pour genre", "\"" + genre + "\"", ":", len(list_film))  
+
+def nb_acteurs(tab):
+
+    """Retourne le nombre d'acteurs différents
+
+    Args:
+        :params tabs(list): Liste où executer la recherche
+
+    Returns:
+        :return (int): Le nombre d'acteurs
+    """
+    #Initialisation de la liste d'acteur unique
+    acteur_list = []
+
+    #Boucle pour chaque ligne dans "tab"
+    for i in range(0, len(tab)):
+        #Recupère le nom de l'acteur
+        acteur_name = tab[i][1]
+        #Vérification si le nom de l'acteur n'est pas dans "acteur_list"
+        if acteur_name not in acteur_list:
+            #Si il n'y est pas on l'ajoute
+            acteur_list.append(acteur_name)
+
+    return len(acteur_list) 
+
+def nb_films_langues(tab, langue):
+
+    """Renvoie le nombre de film dans la langue "langue"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params langue(string): Langue du film
+
+    Returns:
+        :return (int): Nombre de film d'une langue
+    """
+    #Ajoute à "film_list" chaque film ayant pour langue "langue"
+    film_list = [tab[i][4] for i in range(0, len(tab)) if tab[i][4] == langue]
+
+    return len(film_list)
+
+def nb_films_titre(tab, chaine):
+
+    """Renvoie le nombre de films contenant le mot "chaine"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params chaine(string): Mot dans le titre du film
+
+    Returns:
+        :return (int): Nombre de films ayant "chaine" dans le titre
+    """
+
+    #Ajoute à "film_list" chaque film ayant dans leur titre "chaine"
+    film_list = [tab[i][0] for i in range(0, len(tab)) if chaine in tab[i][1].split()]
+
+    return len(film_list)
+
+def nb_films_argent(tab, somme):
+
+    """Renvoie le nombre de films ayant rapporté plus que la somme "somme"
+
+    Args:
+        :params tab(list): Liste où executer la recherche
+        :params somme(int): Somme d'argent minimal
+
+    Returns
+        :return (int): Nombre de film ayant rapporté plus que "somme"
+    """
+
+    #Ajoute à "film_list" chaque film ayant rapporté plus que "somme"
+    film_list = [tab[i][0] for i in range(0, len(tab)) if int(tab[i][6]) > somme]
+
+    return len(film_list)
+
+def films_choix(tab1, tab2, nom):
+
+    """Affiche tous les titres des films de l'acteur ou du réalisateur "nom"
+
+    Args:
+        :params tab1(list): Liste1 où executer la recherche
+        :params tab2(list): Liste film où executer la recherche
+        :params nom(string): Nom de l'acteur ou du réalisateur
+    """
+    #Initalisation de la liste de film
+    list_film = []
+
+    #Ajoute à "id_film" chaque ID de film ayant pour réalisateur/acteur "nom"
+    id_film = [tab1[i][0] for i in range(0, len(tab1)) if tab1[i][1] == nom]
+
+    #Boucle pour chaque film
+    for i in range(0, len(tab2)):
+        #Condition si l'ID du film est dans "id_film"
+        if tab2[i][0] in id_film:
+            #Si vrai alors on ajoute le nom du film dans "list_film"
+            list_film.append(tab2[i][1])
+
+    #Vérification si le nombre de film dans "list_film" > 0
+    if len(list_film) > 0:
+        #Affichage du nom des films
+        affiche_table(list_film, 1, len(list_film))
+    #Affichage du nombre total de résultat
+    print("Nombre total de résultat de film ou", nom, "est acteur/actrice ou réalisateur/réalisatrice:", len(list_film))
+
+def acteur_categorie(tab1, tab2, nom, genre):
+
+    """Affiche touts les titres des films qui ont pour acteurs "nom" et comme genre "genre"
+
+    Args:
+        :param tab1(list): Liste des acteurs où executer la recherche
+        :pram tab2(list): Liste des film où executer la recherche
+        :param nom(string): Nom de l'acteur
+        :param genre(string): Genre du film*
+    """
+
+    #Initalisation de la liste de film
+    list_film = []
+
+    #Ajoute à "id_film" chaque ID de film ayant pour réalisateur/acteur "nom"
+    id_film = [tab1[i][0] for i in range(0, len(tab1)) if tab1[i][1] == nom]
+
+    #Boucle pour chaque film
+    for i in range(0, len(tab2)):
+        #Condition si l'ID du film est dans "id_film" et que "genre" soit dans le genre du film
+        if tab2[i][0] in id_film and genre in tab2[i][5].split():
+            #Si vrai alors on ajoute le nom du film dans "list_film"
+            list_film.append(tab2[i][1])
+
+    #Vérification si le nombre de film dans "list_film" > 0
+    if len(list_film) > 0:
+        #Affichage du nom des films
+        affiche_table(list_film, 1, len(list_film))
+
+    #Affichage du nombre total de résultat
+    print("Nombre total de résultat de film ou", nom, "est acteur/actrice et que le genre est", "\"" + genre + "\"", len(list_film))
+    
+
+if __name__ == "__main__":
+    films_tab = chargement("films")
+    acteurs_tab = chargement("acteurs")
+    # films_commencant_par(films_tab, "l")
+    # langues(films_tab)
+    # acteurs_prenoms(acteurs_tab, "Bruce")
+    # films_sortis_avant(films_tab, 2000)
+    # films_genre(films_tab, "Action")
+    # print(nb_acteurs(acteurs_tab))
+    # print(nb_films_langues(films_tab, "cn"))
+    # print(nb_films_titre(films_tab, "Batman"))
+    # print(nb_films_argent(films_tab, 10000000))
+    # films_choix(acteurs_tab, films_tab, "Bruce Willis")
+    acteur_categorie(acteurs_tab, films_tab, "Cameron Diaz", "Comedy")
