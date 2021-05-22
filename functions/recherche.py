@@ -20,7 +20,7 @@ def films_commencant_par(tab, lettre):
         affiche_table(table_titre, 1, len(table_titre))
 
     #Si le nombre de film on affiche seulement 10 films
-    elif len(table_titre) > 10:
+    elif len(table_titre) >= 10:
         #Affichage du nombre de film ainsi que la 1ère lettre
         print("Voici les 10 premiers films commencent par \"" + lettre + "\"")
         #Affichage des films
@@ -89,7 +89,7 @@ def acteurs_prenoms(tab, prenom):
         #Affichage des acteurs
         affiche_table(acteur_prenom, 1, len(acteur_prenom))
     #Si le nombre d'acteurs dans "acteur_prenom" est  > 10 alors on en affiche que 10
-    elif len(acteur_prenom) > 10:
+    elif len(acteur_prenom) >= 10:
         #Affichage du nombre d'acteurs et du prénom
         print("Voici les 10 premiers acteurs commencent par", "\"" + prenom + "\"")
         #Affichage des 10 premiers acteurs
@@ -117,7 +117,7 @@ def films_sortis_avant(tab, annee):
         #Affichage des films
         affiche_table(list_film, 1, len(list_film))
     #Si le nombre de film dans "list_film" est > 10 alors on affiche les 10 premiers 
-    elif len(list_film) > 10:
+    elif len(list_film) >= 10:
         #Affichage du nombre de film et l'année de sortie
         print("Voici les 10 premiers films sorties avant", annee)
         #Affichage des films
@@ -145,7 +145,7 @@ def films_genre(tab, genre):
         #Affichage des films
         affiche_table(list_film, 1, len(list_film))
     #Si le nombre de film dans "list_film" est > 10 alors on affiche les 10 premiers 
-    elif len(list_film) > 10:
+    elif len(list_film) >= 10:
         #Affichage du nombre de film et l'année de sortie
         print("Voici l'ID des 10 premiers films ayant pour genre", "\"" + genre + "\"")
         #Affichage des films
@@ -258,7 +258,6 @@ def films_choix(tab1, tab2, nom):
     print("Nombre total de résultat de film ou", nom, "est acteur/actrice ou réalisateur/réalisatrice:", len(list_film))
 
 def acteur_categorie(tab1, tab2, nom, genre):
-
     """Affiche touts les titres des films qui ont pour acteurs "nom" et comme genre "genre"
 
     Args:
@@ -287,7 +286,7 @@ def acteur_categorie(tab1, tab2, nom, genre):
         affiche_table(list_film, 1, len(list_film))
 
     #Affichage du nombre total de résultat
-    print("Nombre total de résultat de film ou", nom, "est acteur/actrice et que le genre est", "\"" + genre + "\"", len(list_film))
+    print("Nombre total de résultat de film ou", nom, "est acteur/actrice et que le genre est", "\"" + genre + "\" :", len(list_film))
     
 
 if __name__ == "__main__":
@@ -303,4 +302,4 @@ if __name__ == "__main__":
     # print(nb_films_titre(films_tab, "Batman"))
     # print(nb_films_argent(films_tab, 10000000))
     # films_choix(acteurs_tab, films_tab, "Bruce Willis")
-    acteur_categorie(acteurs_tab, films_tab, "Cameron Diaz", "Comedy")
+    # acteur_categorie(acteurs_tab, films_tab, "Cameron Diaz", "Comedy")
