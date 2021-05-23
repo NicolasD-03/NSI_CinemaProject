@@ -1,4 +1,5 @@
-
+#!!!!! Enlever des commentaire si ce fichier est executé !!!!!
+#from chargement import *
 
 def affiche_table(tab, deb, fin):
 
@@ -39,7 +40,6 @@ def affiche_table(tab, deb, fin):
 
     #Affichage de la décoration inférieur
     print("+" + "-"*(max_len+2) + "+" )
-
 
 if __name__ == "__main__":
     tab_dist = chargement("acteurs")
