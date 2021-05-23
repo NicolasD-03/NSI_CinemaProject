@@ -1,4 +1,4 @@
-from chargement import *
+
 
 def affiche_table(tab, deb, fin):
 
