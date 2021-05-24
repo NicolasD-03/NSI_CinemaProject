@@ -19,14 +19,14 @@ def films_commencant_par(tab, lettre):
     #Si le nombre de film est entre 0 et 10 on les affiche tous
     if len(table_titre) > 0 and len(table_titre) < 10:
         #Affichage du nombre de film ainsi que la 1ère lettre
-        print("\nVoici les", (len(table_titre)), "films commencent par \"" + lettre + "\"")
+        print("\nVoici les", (len(table_titre)), "films commencant par \"" + lettre + "\"")
         #Affichage des films
         affiche_table(table_titre, 1, len(table_titre))
 
     #Si le nombre de film on affiche seulement 10 films
     elif len(table_titre) >= 10:
         #Affichage du nombre de film ainsi que la 1ère lettre
-        print("\nVoici les 10 premiers films commencent par \"" + lettre + "\"")
+        print("\nVoici les 10 premiers films commencant par \"" + lettre + "\"")
         #Affichage des films
         affiche_table(table_titre, 1, 10)
 
